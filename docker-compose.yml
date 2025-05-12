@@ -1,0 +1,31 @@
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: dockerfile
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./backend/:/app/
+      - /proc:/host/proc:ro
+      - /sys:/host/sys:ro
+      - /:/host:ro
+    # networks:
+    #   - monitor-network
+    container_name: monitor-backend
+
+  # frontend:
+  #   build:
+  #     context: ./monitor-frontend
+  #     dockerfile: Dockerfile
+  #   ports:
+  #     - "8080:80"
+  #   networks:
+  #     - monitor-network
+  #   container_name: monitor-frontend
+  #   depends_on:
+  #     - backend
+
+# networks:
+#   monitor-network:
+#     driver: bridge
